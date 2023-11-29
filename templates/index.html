@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stream With Caption</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="mainTitle">Live Stream With Caption</div>
+        <div class="subTitle">자막과 함께 영상을 시청하고 싶으신가요? <br>아래에 링크를 삽입해주세요!</div>
+        <form action=" " method="POST">
+            <input type="text" name="video_link" id = "video_link" class="linkInput" placeholder="Enter your link" required>
+            <br>
+            <button type="submit" value = "button" class="submitButton" oneclick="window.location.href='/stream'">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

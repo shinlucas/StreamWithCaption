@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Test</title>
+      <link href="http://vjs.zencdn.net/6.2.8/video-js.css" rel="stylesheet">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/video.css') }}">
+   </head>
+   <body>
+      <video id="player" class="video-js vjs-default-skin" controls preload autoplay>
+         <source src="/video/index.m3u8" type="application/x-mpegURL">
+      </video>
+      <div id="textContainer">
+         <!-- 초기 텍스트 로드 -->
+         <iframe src="/static/caption/index0.txt" id="textFrame" type="text"></iframe>
+      </div>
+      <script src="http://vjs.zencdn.net/6.2.8/video.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.12.2/videojs-contrib-hls.min.js"></script>
+      <script>
+         var player = videojs('player', {width: 600, height: 480});
+         player.play();
+      </script>
+      <script>
+         setTimeout(() => {for_zero();}, 3000);
+         setInterval(chat, 10000);
+         
+         function chat() {
+            var textFrame = document.getElementById("textFrame");
+            var currentIndex = parseInt(textFrame.src.split("index")[1].split(".txt")[0]);
+            
+            // 다음 텍스트 파일 로드 (순환)
+            let innerTimerId = setInterval(() => {interval_chat(currentIndex);}, 2000);
+            setTimeout(() => {clearInterval(innerTimerId);}, 8000);
+            currentIndex = currentIndex + 1;
+         }
+         function interval_chat(currentIndex) {
+            var textFrame = document.getElementById("textFrame");
+            
+            // 다음 텍스트 파일 로드 (순환)
+            
+            textFrame.src = "/static/caption/index" + currentIndex + ".txt";
+         }
+         function for_zero() {
+            var textFrame = document.getElementById("textFrame");
+            
+            // 다음 텍스트 파일 로드 (순환)
+            
+            textFrame.src = "/static/caption/index0.txt";
+         }
+
+      </script>
+   </body>
+</html>
